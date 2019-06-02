@@ -19,14 +19,20 @@ class VesselAPI extends RESTDataSource {
     })
   } */
 
-  getVessels ({ states, vesselTypes }) {
-    return this.getAllVessels().then((vessels) => {
-      return this.filterVessels({ vessels, filter: states, key: 'state' })
-    }).then(vessels => {
-      return this.filterVessels({ vessels, filter: vesselTypes, key: 'vesselType' })
-    })
+  getVessels ({ states, vesselTypes, vesselClasses }) {
+    return this.getAllVessels()
+      .then((vessels) => {
+        return this.filterVessels({ vessels, filter: states, key: 'state' })
+      })
+      .then((vessels) => {
+        return this.filterVessels({ vessels, filter: vesselTypes, key: 'vesselType' })
+      })
+      .then((vessels) => {
+        return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
+      })
   }
 
+  // fix if null and single value
   filterVessels ({ vessels, filter, key }) {
     return Array.isArray(filter) ? vessels.filter((vessel) => filter.includes(vessel[key])) : vessels
   }

@@ -2,7 +2,7 @@ const { gql } = require('apollo-server')
 
 const typeDefs = gql`
 type Query {
-  vessels(states: [VesselState], vesselTypes: [VesselType]): [Vessel]
+  vessels(states: [VesselState], vesselTypes: [VesselType], vesselClasses: [VesselClasses]): [Vessel]
   vessel(id: ID!): Vessel
 }
 
@@ -10,6 +10,22 @@ enum VesselState {
   OPERATIV,
   BEREDSKAP,
   UAD
+}
+enum VesselClasses {
+  SKOMVAER,
+  ADELER,
+  MOB_BAT,
+  VON_KOSS,
+  EMMY_DYVI,
+  SIMRAD,
+  FOSEN,
+  PETTER_CG_SUNDT,
+  BERGESEN,
+  ANDRE_SRK_FARTOY,
+  AMBULANSEBAT,
+  LEGESKYSSBAT,
+  ULSTEIN,
+  STAFF
 }
 
 enum VesselType {
