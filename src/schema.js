@@ -52,7 +52,7 @@ type Vessel {
   otherName: String
   id: ID! 
   class: String
-  vesselType: Int
+  vesselType: String
   callsign: String
   mmsi: String
   mobile: String

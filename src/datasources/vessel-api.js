@@ -1,5 +1,5 @@
 const { RESTDataSource } = require('apollo-datasource-rest')
-const camelcaseKeys = require('camelcase-keys')
+const camelCaseKeys = require('camelcase-keys')
 const cleanDeep = require('clean-deep')
 
 class VesselAPI extends RESTDataSource {
@@ -28,19 +28,20 @@ class VesselAPI extends RESTDataSource {
         return this.filterVessels({ vessels, filter: vesselTypes, key: 'vesselType' })
       })
       .then((vessels) => {
-        return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
+        // return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
+        return vesselClasses ? vessels.filter((vessel) => vesselClasses.includes(vessel.class)) : vessels
       })
   }
 
-  // fix if null and single value
+  // if filter defined filter vessels array on value(s) in filter and vessels[key]
   filterVessels ({ vessels, filter, key }) {
-    return Array.isArray(filter) ? vessels.filter((vessel) => filter.includes(vessel[key])) : vessels
+    return filter ? vessels.filter((vessel) => filter.includes(vessel[key])) : vessels
   }
 
   vesselReducer ({ vessel }) {
     vessel.id = vessel.rs
     delete vessel.rs
-    return cleanDeep(camelcaseKeys(vessel, { deep: true }))
+    return cleanDeep(camelCaseKeys(vessel, { deep: true }))
   }
 
   async getVesselById ({ id }) {
