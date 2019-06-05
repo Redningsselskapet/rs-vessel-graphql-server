@@ -4,6 +4,7 @@ const typeDefs = gql`
 type Query {
   vessels(states: [VesselState], vesselTypes: [VesselType], vesselClasses: [VesselClasses]): [Vessel]
   vessel(id: ID!): Vessel
+  stations: [Station]
 }
 
 enum VesselState {
@@ -21,9 +22,7 @@ enum VesselClasses {
   FOSEN,
   PETTER_CG_SUNDT,
   BERGESEN,
-  ANDRE_SRK_FARTOY,
-  AMBULANSEBAT,
-  LEGESKYSSBAT,
+  ANDRE_FARTOY,
   ULSTEIN,
   STAFF
 }
@@ -99,7 +98,6 @@ type Vessel {
 }
 
 type Station {
-  code: Int
   name: String
   type: String
   region: String
@@ -118,6 +116,7 @@ type Station {
   municipalityEmergencyPlan: String
   description: StationDescription
   localTemps: String
+  vessels: [Vessel]
 }
 
 type Distrikskontor {

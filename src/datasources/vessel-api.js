@@ -28,8 +28,8 @@ class VesselAPI extends RESTDataSource {
         return this.filterVessels({ vessels, filter: vesselTypes, key: 'vesselType' })
       })
       .then((vessels) => {
-        // return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
-        return vesselClasses ? vessels.filter((vessel) => vesselClasses.includes(vessel.class)) : vessels
+        return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
+        // return vesselClasses ? vessels.filter((vessel) => vesselClasses.includes(vessel.class)) : vessels
       })
   }
 

@@ -19,19 +19,22 @@ module.exports = {
     FOSEN: '6',
     PETTER_CG_SUNDT: '11',
     BERGESEN: '12',
-    ANDRE_SRK_FARTOY: '2',
-    AMBULANSEBAT: '2',
+    ANDRE_FARTOY: '2',
     ULSTEIN: '15',
     STAFF: '16'
   },
   Query: {
     vessels: (_, { states, vesselTypes, vesselClasses }, { dataSources }) =>
       dataSources.vesselAPI.getVessels({ states, vesselTypes, vesselClasses }),
-    vessel: (_, { id }, { dataSources }) => dataSources.vesselAPI.getVesselById({ id })
+    vessel: (_, { id }, { dataSources }) => dataSources.vesselAPI.getVesselById({ id }),
+    stations: (_, __, { dataSources }) => dataSources.stationAPI.getStations()
   },
   Vessel: {
     aisData: ({ mmsi }, __, { dataSources }) => {
       return dataSources.aisDataAPI.getAisData({ mmsi })
+    },
+    station: ({ id }, __, { dataSources }) => {
+      return dataSources.stationAPI.getStationByVesselId({ vesselId: id })
     }
   }
 }
