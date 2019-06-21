@@ -9,7 +9,13 @@ class AisDataAPI extends RESTDataSource {
   }
   async getAisData ({ mmsi }) {
     const aisData = await this.get('aktive_pos.json')
-    return cleanDeep(camelcaseKeys(aisData, { deep: true })).find(data => data.mmsi === mmsi) || []
+    return (
+      this.aisDataReducer({ aisData }).find(data => data.mmsi === mmsi) || []
+    )
+  }
+
+  aisDataReducer ({ aisData }) {
+    return cleanDeep(camelcaseKeys(aisData, { deep: true }))
   }
 }
 module.exports = AisDataAPI

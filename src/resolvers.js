@@ -26,7 +26,8 @@ module.exports = {
   Query: {
     vessels: (_, { states, vesselTypes, vesselClasses }, { dataSources }) =>
       dataSources.vesselAPI.getVessels({ states, vesselTypes, vesselClasses }),
-    vessel: (_, { id }, { dataSources }) => dataSources.vesselAPI.getVesselById({ id }),
+    vessel: (_, { id }, { dataSources }) =>
+      dataSources.vesselAPI.getVesselById({ id }),
     stations: (_, __, { dataSources }) => dataSources.stationAPI.getStations()
   },
   Vessel: {

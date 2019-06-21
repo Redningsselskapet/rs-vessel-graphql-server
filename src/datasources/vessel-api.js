@@ -10,32 +10,37 @@ class VesselAPI extends RESTDataSource {
   async getAllVessels () {
     const response = await this.get('getboats')
     const vessels = response.rescueboats
-    return Array.isArray(vessels) ? vessels.map((vessel) => this.vesselReducer({ vessel })) : []
+    return Array.isArray(vessels)
+      ? vessels.map(vessel => this.vesselReducer({ vessel }))
+      : []
   }
-
-  /* getVessels ({ states }) {
-    return this.getAllVessels().then((vessels) => {
-      return vessels.filter((vessel) => states.includes(vessel.state))
-    })
-  } */
 
   getVessels ({ states, vesselTypes, vesselClasses }) {
     return this.getAllVessels()
-      .then((vessels) => {
+      .then(vessels => {
         return this.filterVessels({ vessels, filter: states, key: 'state' })
       })
-      .then((vessels) => {
-        return this.filterVessels({ vessels, filter: vesselTypes, key: 'vesselType' })
+      .then(vessels => {
+        return this.filterVessels({
+          vessels,
+          filter: vesselTypes,
+          key: 'vesselType'
+        })
       })
-      .then((vessels) => {
-        return this.filterVessels({ vessels, filter: vesselClasses, key: 'class' })
-        // return vesselClasses ? vessels.filter((vessel) => vesselClasses.includes(vessel.class)) : vessels
+      .then(vessels => {
+        return this.filterVessels({
+          vessels,
+          filter: vesselClasses,
+          key: 'class'
+        })
       })
   }
 
   // if filter defined filter vessels array on value(s) in filter and vessels[key]
   filterVessels ({ vessels, filter, key }) {
-    return filter ? vessels.filter((vessel) => filter.includes(vessel[key])) : vessels
+    return filter
+      ? vessels.filter(vessel => filter.includes(vessel[key]))
+      : vessels
   }
 
   vesselReducer ({ vessel }) {
@@ -46,7 +51,7 @@ class VesselAPI extends RESTDataSource {
 
   async getVesselById ({ id }) {
     const vessels = await this.getAllVessels()
-    return vessels.find((vessel) => vessel.id === id)
+    return vessels.find(vessel => vessel.id === id)
   }
 }
 
