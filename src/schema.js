@@ -98,7 +98,8 @@ const typeDefs = gql`
     station: Station
     distrikskontor: Distrikskontor
     imageUrl: String
-    aisData: AisData
+    aisData: AisData,
+    aisDataTrack(startTime: String, endTime: String): [AisData]
   }
 
   type Station {

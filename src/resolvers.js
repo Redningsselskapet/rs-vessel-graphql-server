@@ -34,6 +34,21 @@ module.exports = {
     aisData: ({ mmsi }, __, { dataSources }) => {
       return dataSources.aisDataAPI.getAisData({ mmsi })
     },
+    aisDataTrack: (
+      { mmsi },
+      { startTime, endTime = new Date().toJSON() },
+      { dataSources }
+    ) => {
+      if (!startTime) {
+        startTime = new Date()
+        startTime.setHours(startTime.getHours() - 24)
+      }
+      return dataSources.aisTrackerApi.getAisDataTrack({
+        mmsi,
+        startTime,
+        endTime
+      })
+    },
     station: ({ id }, __, { dataSources }) => {
       return dataSources.stationAPI.getStationByVesselId({ vesselId: id })
     }
