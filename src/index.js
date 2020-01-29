@@ -6,6 +6,8 @@ const StationAPI = require('./datasources/station-api')
 const AisTrackerApi = require('./datasources/aistracker-api')
 const resolvers = require('./resolvers')
 const server = new ApolloServer({
+  introspection: true,
+  playground: true,
   typeDefs,
   resolvers,
   dataSources: () => ({
