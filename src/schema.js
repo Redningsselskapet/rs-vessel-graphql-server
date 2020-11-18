@@ -95,6 +95,7 @@ type Vessel {
   distrikskontor: Distrikskontor
   imageUrl: String
   aisData: AisData
+  extendedState: ExtendedState
 }
 
 type Station {
@@ -162,5 +163,12 @@ type StationDescription {
   deals: String
   recreation: String
 }
+
+type ExtendedState {
+  statusId: Int
+  statusText: String
+  colorCode: String
+}
+
 `
 module.exports = typeDefs
