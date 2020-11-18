@@ -100,6 +100,7 @@ const typeDefs = gql`
     imageUrl: String
     aisData: AisData,
     aisDataTrack(startTime: String, endTime: String): [AisData]
+    extendedState: ExtendedState
   }
 
   type Station {
@@ -167,5 +168,12 @@ const typeDefs = gql`
     deals: String
     recreation: String
   }
+
+  type ExtendedState {
+    statusId: Int
+    statusText: String
+    colorCode: String
+  }
+
 `
 module.exports = typeDefs
