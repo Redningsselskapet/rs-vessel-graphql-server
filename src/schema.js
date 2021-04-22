@@ -15,6 +15,7 @@ const typeDefs = gql`
     OPERATIV
     BEREDSKAP
     UAD
+    SAR
   }
   enum VesselClasses {
     SKOMVAER

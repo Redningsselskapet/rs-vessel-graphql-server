@@ -2,7 +2,8 @@ module.exports = {
   VesselState: {
     OPERATIV: '0',
     BEREDSKAP: '1',
-    UAD: '3'
+    UAD: '3',
+    SAR: '5'
   },
   VesselType: {
     FAST_BEMANNET: '0',
