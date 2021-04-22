@@ -10,7 +10,8 @@ type Query {
 enum VesselState {
   OPERATIV,
   BEREDSKAP,
-  UAD
+  UAD,
+  SAR
 }
 enum VesselClasses {
   SKOMVAER,
